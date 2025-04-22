@@ -737,7 +737,7 @@ typedef RGFW_ENUM(u32, RGFW_windowFlags) {
 	RGFW_windowTransparent = RGFW_BIT(6), /*!< the window is transparent (only properly works on X11 and MacOS, although it's meant for for windows) */
 	RGFW_windowCenter = RGFW_BIT(7), /*! center the window on the screen */
 	RGFW_windowOpenglSoftware = RGFW_BIT(8), /*! use OpenGL software rendering */
-	RGFW_windowCocoaCHDirToRes = RGFW_BIT(9), /*! (cocoa only), change directory to resource folder */
+	RGFW_windowCocoaCHDirToRes = RGFW_BIT(9), /*! (cocoa only), change directory to resources folder */
 	RGFW_windowScaleToMonitor = RGFW_BIT(10), /*! scale the window to the screen */
 	RGFW_windowHide = RGFW_BIT(11), /*! the window is hidden */
 	RGFW_windowMaximize = RGFW_BIT(12),
@@ -790,10 +790,10 @@ RGFWDEF RGFW_bool RGFW_monitor_scaleToWindow(RGFW_monitor mon, RGFW_window* win)
 RGFWDEF void RGFW_setClassName(const char* name);
 RGFWDEF void RGFW_setXInstName(const char* name); /*!< X11 instance name (window name will by used by default) */
 
-/*! (cocoa only) change directory to resource folder */
+/*! (cocoa only) change directory to resources folder */
 RGFWDEF void RGFW_moveToMacOSResourceDir(void);
 
-/* NOTE: (windows) if the executable has an icon resource named RGFW_ICON, it will be set as the initial icon for the window */
+/* NOTE: (windows) if the executable has an icon resources named RGFW_ICON, it will be set as the initial icon for the window */
 
 RGFWDEF RGFW_window* RGFW_createWindow(
 	const char* name, /* name of the window */

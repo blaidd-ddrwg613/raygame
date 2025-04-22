@@ -44,7 +44,7 @@ if (APPLE AND NOT CMAKE_SYSTEM STRLESS "Darwin-18.0.0")
     MESSAGE(AUTHOR_WARNING "OpenGL is deprecated starting with macOS 10.14 (Mojave)!")
 endif ()
 
-# Collect all source files and resource files
+# Collect all source files and resources files
 # into a CMake variable
 set(example_sources)
 set(example_resources)
@@ -172,5 +172,5 @@ foreach (example_source ${example_sources})
     endif ()
 endforeach ()
 
-# Copy all of the resource files to the destination
+# Copy all of the resources files to the destination
 file(COPY ${example_resources} DESTINATION "resources/")

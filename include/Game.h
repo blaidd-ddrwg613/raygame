@@ -25,13 +25,14 @@ public:
     void SetFps(int fps) { targetFps = fps; };
 
     rayGame::Camera camera;
-    Player player;
 
 private:
     void ProcessInput();
     void UpdateGame();
     void DrawGame();
     void ToggleVsync();
+
+    Player player;
 
     int wWidth = 1080;
     int wHeight = 720;

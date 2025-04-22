@@ -44,7 +44,7 @@ static const char* getEGLErrorString(EGLint error)
         case EGL_NOT_INITIALIZED:
             return "EGL is not or could not be initialized";
         case EGL_BAD_ACCESS:
-            return "EGL cannot access a requested resource";
+            return "EGL cannot access a requested resources";
         case EGL_BAD_ALLOC:
             return "EGL failed to allocate resources for the requested operation";
         case EGL_BAD_ATTRIBUTE:

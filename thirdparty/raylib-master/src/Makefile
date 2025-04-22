@@ -87,7 +87,7 @@ RAYLIB_BUILD_MODE    ?= RELEASE
 # Build output name for the library
 RAYLIB_LIB_NAME      ?= raylib
 
-# Define resource file for DLL properties
+# Define resources file for DLL properties
 RAYLIB_RES_FILE      ?= ./raylib.dll.rc.data
 
 # Define external config flags
@@ -679,7 +679,7 @@ else
     ifeq ($(RAYLIB_LIBTYPE),SHARED)
         ifeq ($(TARGET_PLATFORM),$(filter $(TARGET_PLATFORM),PLATFORM_DESKTOP_GLFW PLATFORM_DESKTOP_SDL PLATFORM_DESKTOP_RGFW))
             ifeq ($(PLATFORM_OS),WINDOWS)
-                # NOTE: Linking with provided resource file
+                # NOTE: Linking with provided resources file
 				$(CC) -shared -o $(RAYLIB_RELEASE_PATH)/$(RAYLIB_LIB_NAME).dll $(OBJS) $(RAYLIB_RES_FILE) $(LDFLAGS) $(LDLIBS)
 				@echo "raylib dynamic library ($(RAYLIB_LIB_NAME).dll) and import library (lib$(RAYLIB_LIB_NAME)dll.a) generated!"
             endif
