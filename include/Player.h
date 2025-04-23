@@ -1,45 +1,40 @@
 #pragma once
 
+#include <string>
 #include "raylib.h"
 #include "raymath.h"
+#include "Utils.h"
 
 class Player
 {
 public:
     Player();
+    Player(std::string texturePath);
 
-    Player(float x, float y, float width, float height, Color color)
-        { playerRect = { x, y, width, height }; this->color = color; };
+    Vector2 GetPosition() { return position; };
+    Texture2D GetTexture() { return playerTexture; }
+    float GetMovementSpeed() { return baseMoveSpeed; }
 
-    float GetX() { return playerRect.x; };
-    float GetY() { return  playerRect.y; };
-    float GetWidth() { return playerRect.width; };
-    float GetHeight() { return playerRect.height; };
-    Vector2 GetMovementVector() { return movementVector; };
-    Vector2 GetPlayerOrigin() { return playerOrigin; };
-    Vector2 GetPlayerPos() { return { playerRect.x, playerRect.y }; };
-    Rectangle getPlayerRect() { return playerRect; }
-    Color GetColor() { return color; }
-
-    void SetX(float x) { playerRect.x = x; };
-    void SetY(float y) { playerRect.y = y; };
-    void SetWidth(float width) { playerRect.width = width; };
-    void SetHeight(float height) { playerRect.height = height; };
-    void SetColor(Color color) { this->color = color; }
-    void SetMovementVector(Vector2 movementVector) { this->movementVector = movementVector; }
+    void SetPosition(Vector2 pos) { position = pos; }
+    void SetTexture(Texture2D texture2D) { playerTexture = texture2D; }
+    void SetMovementSpeed(float speed) { baseMoveSpeed = speed; }
+    void SetMovementMultiplier(float multiplier) { speedMultiplier = multiplier; }
 
     void Update(float deltaTime);
+    void Draw();
+
 
 private:
 
-    void CalculateMovementVector();
+    Texture2D playerTexture;
+    Vector2 position;
+    Rectangle frameRect;
 
-    Rectangle playerRect{};
-    Vector2 playerOrigin{ playerRect.x / 2,playerRect.y / 2};
-    Color color{};
-    Vector2 movementVector;
-    float baseMovementSpeed = 10;
+    Vector2 moveDir;
+    float baseMoveSpeed = 10;
     float speedMultiplier = 50;
-    float movementSpeed = baseMovementSpeed * speedMultiplier;
+    float movementSpeed = baseMoveSpeed * speedMultiplier;
+
+    void UpdateMovementDir();
 
 };

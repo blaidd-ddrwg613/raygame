@@ -1,37 +1,58 @@
 #include "Player.h"
 
 Player::Player()
-= default;
+{
+
+}
+
+Player::Player(std::string texturePath) : position({250, 300})
+{
+    if (playerTexture.id != 0)
+    {
+        SetTexture(LoadTexture(texturePath.c_str()));
+    } else
+    {
+        SetTexture(LoadTexture(INVALID_RESOURCE_PATH.c_str()));
+    }
+
+    frameRect = Rectangle{ 0, 0, playerTexture.width / 10.0f, (float)playerTexture.height };
+}
 
 void Player::Update(float deltaTime)
 {
-    CalculateMovementVector();
+    UpdateMovementDir();
 
-    movementVector = Vector2Normalize(movementVector);
+    Vector2Normalize(moveDir);
 
-    playerRect.x += movementVector.x * movementSpeed * deltaTime;
-    playerRect.y += movementVector.y * movementSpeed * deltaTime;
+    position.x += moveDir.x * movementSpeed * deltaTime;
+    position.y += moveDir.y * movementSpeed * deltaTime;
 }
 
-void Player::CalculateMovementVector()
+void Player::Draw()
 {
-    movementVector.x = 0;
-    movementVector.y = 0;
-    
+//    DrawTexture(playerTexture, 250, 300, WHITE);
+    DrawTextureRec(playerTexture, frameRect, {position.x, position.y}, WHITE);
+}
+
+void Player::UpdateMovementDir()
+{
+    moveDir.x = 0;
+    moveDir.y = 0;
+
     if (IsKeyDown(KEY_W))
     {
-        movementVector.y = -1;
-    }
-    if (IsKeyDown(KEY_S))
-    {
-        movementVector.y = 1;
+        moveDir.y -= 1;
     }
     if (IsKeyDown(KEY_A))
     {
-        movementVector.x = -1;
+        moveDir.x -= 1;
+    }
+    if (IsKeyDown(KEY_S))
+    {
+        moveDir.y += 1;
     }
     if (IsKeyDown(KEY_D))
     {
-        movementVector.x = 1;
+        moveDir.x += 1;
     }
 }
